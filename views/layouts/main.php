@@ -15,7 +15,8 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -23,45 +24,128 @@ AppAsset::register($this);
 <body>
 
 <?php $this->beginBody() ?>
-    <div class="wrap">
+    <section id="header" class="appear"></section>
         <?php
-            NavBar::begin([
-                'brandLabel' => 'My Company',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'About', 'url' => ['/site/about']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
-                    Yii::$app->user->isGuest ?
-                        ['label' => 'Login', 'url' => ['/site/login']] :
-                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],
-                ],
-            ]);
-            NavBar::end();
+        NavBar::begin([
+            'brandLabel' => 'Lemonbar Karaoke Kings',
+            'brandUrl' => Yii::$app->homeUrl,
+            'brandOptions' => [
+                'data-0' => 'line-height:65px;',
+                'data-300' => 'line-height:50px;'
+            ],
+            'options' => [
+                'class' => 'navbar navbar-fixed-top',
+                'role'  => 'navigation',
+                'data-0' => 'line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);',
+                'data-300' => 'line-height:60px; height:60px; background-color:rgba(0,0,0,1);'
+            ],
+        ]);
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'About', 'url' => ['/site/about']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+                Yii::$app->user->isGuest ?
+                    ['label' => 'Login', 'url' => ['/site/login']] :
+                    ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                        'url' => ['/site/logout'],
+                        'linkOptions' => ['data-method' => 'post']],
+            ],
+        ]);
+        NavBar::end();
         ?>
 
-        <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= $content ?>
-        </div>
-    </div>
+        <section class="featured">
+            <div class="container"> 
+                <div class="row mar-bot20">
+                    <div class="col-md-6 col-md-offset-3">
+                        
+                        <div class="align-center">
+                            <i class="fa fa-star fa-4x"></i>
+                            <h2 class="slogan">Lemonbar Vienna</h2>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer class="footer">
+        <?= $content ?>
+
+        <!-- about -->
+        <section id="section-about" class="section appear clearfix">
         <div class="container">
-            <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
+
+                <div class="row mar-bot40">
+                    <div class="col-md-offset-3 col-md-6">
+                        <div class="section-header">
+                            <h2 class="section-heading animated" data-animation="bounceInUp">Our Team</h2>
+                            <p>Webdevelopment is fun!</p>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row align-center mar-bot40">
+                        <div class="col-md-3">
+                            <div class="team-member">
+                                <div class="team-detail">
+                                    <h4>Philipp Frenzel</h4>
+                                    <span>Web developer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="team-member">
+                                <div class="team-detail">
+                                    <h4>Christian Frenzel</h4>
+                                    <span>Web developer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="team-member">                                
+                                <div class="team-detail">
+                                <h4>Vicky Tan</h4>
+                                    <span>Web designer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="team-member">
+                                <div class="team-detail">
+                                <h4>Kevin Peterson</h4>
+                                    <span>UI designer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
         </div>
-    </footer>
+        </section>
+        <!-- /about -->
+
+        <section id="footer" class="section footer">
+        <div class="container">
+            <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+                <div class="col-sm-12 align-center">
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>               
+                </div>
+            </div>
+
+            <div class="row align-center copyright">
+                    <div class="col-sm-12"><p>Copyright &copy; frenzel GmbH - by <a href="http://frenzel.net">Frenzel.NET</a></p></div>
+            </div>
+        </div>
+
+    </section>
+
+        <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>
 
 <?php $this->endBody() ?>
 </body>

@@ -9,7 +9,13 @@ return [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\commands',
+    'controllerNamespace' => 'frenzelgmbh\appcommon\commands',
+    'controllerMap' => [
+        'migrate'   => 'bariew\moduleMigration\ModuleMigration'
+    ],
+    'modules' => [
+        'user' => 'dektrium\user\Module',
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

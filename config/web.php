@@ -3,9 +3,31 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id' => 'basic',
+    'id' => 'karaokekings',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'user' => [
+          'class' => 'dektrium\user\Module',
+          'admins' => ['philippfrenzel'],
+          'components'=>[
+            'manager' => [
+                'userClass' => 'frenzelgmbh\appcommon\components\User'
+            ]
+          ]
+        ],
+        'appcommon'=>[
+            'class'=>'frenzelgmbh\appcommon\Module',
+        ],
+        'packaii' => [
+              'class' => 'schmunk42\packaii\Module',
+              'gitHubUsername' => 'philippfrenzel',
+              'gitHubPassword' => 'cassandra0903'
+        ],
+        'gridview' =>  [
+              'class' => '\kartik\grid\Module'
+        ]
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
