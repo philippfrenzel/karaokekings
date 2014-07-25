@@ -9,7 +9,7 @@ return [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'frenzelgmbh\appcommon\commands',
+    'controllerNamespace' => 'app\commands',
     'controllerMap' => [
         'migrate'   => 'bariew\moduleMigration\ModuleMigration'
     ],
