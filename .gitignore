@@ -1,0 +1,7 @@
+#ignore composer lock
+composer.lock
+
+#ignore folders
+/vendor/*
+/app/runtime/*
+/web/assets/*
