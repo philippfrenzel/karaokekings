@@ -67,7 +67,9 @@ class SongsController extends Controller
         //first we load the model
         $model = $this->findModel($id);
         $lyrics = NULL;
+        $lastfm = NULL;
 
+        //access data from the chartlyrics api:
         try
         {
             $ServiceUrl = Html::decode('http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect');
@@ -99,9 +101,38 @@ class SongsController extends Controller
             //it crashed down...
         }
 
+        //access data from the lastfm api:
+        try
+        {
+            $ServiceUrl = Html::decode('http://ws.audioscrobbler.com/2.0/');
+            $client = new Client();
+            $request = $client->createRequest('GET', $ServiceUrl);
+            
+            $query = $request->getQuery();
+            $query->set('api_key','2e52ad4ddb8d13a73adc3a21c27be438');
+            $query->set('method','artist.getTopTracks');
+            $query->set('artist',$model->artist);
+            $query->set('limit',10);
+
+            try
+            {
+                $res = $client->send($request);
+                $lastfm = $res->xml();
+            }
+            catch (\Guzzle\Http\Exception\CurlException $info) 
+            {
+                //it crashed down...
+            }                                    
+        }
+        catch (\Guzzle\Http\Exception\BadResponseException $e) 
+        {
+            //it crashed down...
+        }
+
         return $this->render('songview', [
             'model'  => $model,
-            'lyrics' => $lyrics
+            'lyrics' => $lyrics,
+            'relatedTracks' => $lastfm
         ]);
     }
 

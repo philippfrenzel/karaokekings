@@ -35,5 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
 
+        
+<?php if(is_object($relatedTracks)):?>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2"> 
+        <h2>Weitere Titel von <?= Html::encode($model->artist) ?></h2>   
+        <?php foreach($relatedTracks->toptracks->track AS $Song): ?>
+            <h4> >> <?= Html::encode($Song->name); ?></h4>
+        <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+
     </div>
 </section>
