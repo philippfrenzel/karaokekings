@@ -40,6 +40,20 @@ class Songs extends \yii\db\ActiveRecord
         ];
     }
 
+    //this will be done before we save it...
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if(Songs::find()->where(['title'=>$this->title, 'artist'=>$this->artist])->count()>0)
+            {
+                return false;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @inheritdoc
      */
