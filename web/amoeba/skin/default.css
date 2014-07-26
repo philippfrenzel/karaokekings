@@ -2,8 +2,23 @@
 #1 = 35A49C
 #2 = 79CDC0
 */
+
+.ias-trigger{
+	padding-top: 15px;
+	font-size: 150%;
+	color: #989898;
+}
+
+.songitem{
+	padding: 15px 5px 15px 5px;
+}
+
+.lvalternate{
+	background-color: #efefef;
+}
+
 a {
-	color: #35A49C;
+	color: #E68A01;
 }
 a:hover {
 	color: #79CDC0;

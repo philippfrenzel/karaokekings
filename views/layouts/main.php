@@ -27,7 +27,7 @@ AppAsset::register($this);
     <section id="header" class="appear"></section>
         <?php
         NavBar::begin([
-            'brandLabel' => 'Lemonbar Karaoke Kings',
+            'brandLabel' => 'Lemmon Karaoke Kings',
             'brandUrl' => Yii::$app->homeUrl,
             'brandOptions' => [
                 'data-0' => 'line-height:65px;',
@@ -45,11 +45,11 @@ AppAsset::register($this);
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
+                //['label' => 'Contact', 'url' => ['/site/contact']],
                 Yii::$app->user->isGuest ?
-                    ['label' => 'Login', 'url' => ['/site/login']] :
+                    ['label' => 'Login', 'url' => ['/user/security/login']] :
                     ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                        'url' => ['/site/logout'],
+                        'url' => ['/user/security/logout'],
                         'linkOptions' => ['data-method' => 'post']],
             ],
         ]);
@@ -63,7 +63,7 @@ AppAsset::register($this);
                         
                         <div class="align-center">
                             <i class="fa fa-star fa-4x"></i>
-                            <h2 class="slogan">Lemonbar Vienna</h2>    
+                            <h2 class="slogan">Lemmon Vienna</h2>    
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ AppAsset::register($this);
                 </div>
 
                     <div class="row align-center mar-bot40">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="team-member">
                                 <div class="team-detail">
                                     <h4>Philipp Frenzel</h4>
@@ -94,27 +94,11 @@ AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="team-member">
                                 <div class="team-detail">
                                     <h4>Christian Frenzel</h4>
                                     <span>Web developer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="team-member">                                
-                                <div class="team-detail">
-                                <h4>Vicky Tan</h4>
-                                    <span>Web designer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="team-member">
-                                <div class="team-detail">
-                                <h4>Kevin Peterson</h4>
-                                    <span>UI designer</span>
                                 </div>
                             </div>
                         </div>
