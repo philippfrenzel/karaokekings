@@ -9,6 +9,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use SimpleXMLElement;
+use Guzzle\Http\Client;
+use yii\helpers\Html;
+
 /**
  * SongsController implements the CRUD actions for Songs model.
  */
@@ -50,6 +54,43 @@ class SongsController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Display a single Songs
+     * @param integer id
+     * @return mixed
+     */
+    public function actionSongview($id)
+    {
+        //first we load the model
+        $model = $this->findModel($id);
+        $lyrics = NULL;
+
+        try
+        {
+            $ServiceUrl = Html::decode('http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect');
+            $client = new Client();
+            $request = $client->createRequest('GET', $ServiceUrl);
+            
+            $query = $request->getQuery();
+            $query->set('artist',$model->artist);
+            $query->set('song',$model->title);
+
+            $res = $client->send($request);
+            
+            //$lyrics = $res->getBody();
+            $lyrics = $res->xml();
+        }
+        catch (Exception $e) 
+        {
+            $lyrics->Lyric = "Sorry, we didn't found a matching lyric:(";
+        }
+
+        return $this->render('songview', [
+            'model'  => $model,
+            'lyrics' => $lyrics
         ]);
     }
 
