@@ -100,8 +100,6 @@ class SongsController extends Controller
             }
         }
 
-        $model->lyrics = $lyrics->Lyric
-
         return $this->render('songview', [
             'model'  => $model,
             'lyrics' => $lyrics
