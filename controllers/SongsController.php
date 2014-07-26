@@ -78,26 +78,25 @@ class SongsController extends Controller
             $query->set('artist',$model->artist);
             $query->set('song',$model->title);
 
-            $res = $client->send($request);
-            
-            //$lyrics = $res->getBody();
-            $lyrics = $res->xml();
-            if($lyrics->Lyric != '' && $model->lyrics != $lyrics->Lyric)
+            try
             {
-                $model->lyrics = $lyrics->Lyric;
-                $model->save();
+                $res = $client->send($request);
+                $lyrics = $res->xml();
+                if($lyrics->Lyric != '' && $model->lyrics != $lyrics->Lyric)
+                {
+                    $model->lyrics = $lyrics->Lyric;
+                    $model->save();
+                }
             }
+            catch (\Guzzle\Http\Exception\CurlException $info) 
+            {
+                //$lyrics->Lyric = "Sorry, we didn't found a matching lyric:(";
+                //$lyrics->LyricCovertArtUrl = ' ';
+            }                                    
         }
-        catch (Exception $e) 
+        catch (\Guzzle\Http\Exception\BadResponseException $e) 
         {
-            if($model->lyrics != '')
-            {
-                $lyrics->Lyric = $model->lyrics;
-            }
-            else
-            {
-                $lyrics->Lyric = "Sorry, we didn't found a matching lyric:(";
-            }
+            //it crashed down...
         }
 
         return $this->render('songview', [

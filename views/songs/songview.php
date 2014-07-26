@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <div class="row">
             <div class="col-md-2">
-                <img src="<?= Html::encode($lyrics->LyricCovertArtUrl) ?>">
+                <img src="<?= is_Object($lyrics)?Html::encode($lyrics->LyricCovertArtUrl):'' ?>">
             </div>
             <div class="col-md-10">
 <pre>
-<?= Html::encode($lyrics->Lyric) ?>
+<?= is_Object($lyrics)?Html::encode($lyrics->Lyric):Html::encode($model->lyrics) ?>
 </pre>                
             </div>
         </div>
