@@ -21,8 +21,10 @@ $this->title = 'Karaoke Kings - Lemmon Catalogue';
                 ]) ?>
             </div>
             <div class="col-lg-4">
-                <h2>Bestellungen</h2>
-                <p>* Spritzer Weiss</p>
+                <h2>Karte</h2>
+                <p>
+                    
+                </p>
             </div>
         </div>
     </div>
