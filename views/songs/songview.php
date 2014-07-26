@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-12">
                 <h1><?= Html::encode($this->title) ?> <small><?= Html::encode($model->artist) ?></small></h1>
-                <a href="<?= Url::toRoute(['/index']); ?>">Back</a>
+                <a href="<?= Url::toRoute(['/index']); ?>"><i class="fa fa-arrow-left fa-4x"></i>Back</a>
             </div>
         </div>
         
