@@ -82,11 +82,25 @@ class SongsController extends Controller
             
             //$lyrics = $res->getBody();
             $lyrics = $res->xml();
+            if($lyrics->Lyric != '' && $model->lyrics != $lyrics->Lyric)
+            {
+                $model->lyrics = $lyrics->Lyric;
+                $model->save();
+            }
         }
         catch (Exception $e) 
         {
-            $lyrics->Lyric = "Sorry, we didn't found a matching lyric:(";
+            if($model->lyrics != '')
+            {
+                $lyrics->Lyric = $model->lyrics;
+            }
+            else
+            {
+                $lyrics->Lyric = "Sorry, we didn't found a matching lyric:(";
+            }
         }
+
+        $model->lyrics = $lyrics->Lyric
 
         return $this->render('songview', [
             'model'  => $model,
