@@ -8,11 +8,11 @@ use yii\helpers\Html;
 <div class="row">
 	<div class="col-md-6">
 		<h4>
-			<?= Html::a(Html::encode($model->title), ['/songs/songview', 'id' => $model->id]); ?>
+			<?= Html::a($model->title, ['/songs/songview', 'id' => $model->id]); ?>
 		</h4>
 	</div>
 	<div class="col-md-4">
-		<?= Html::a(Html::encode($model->artist), ['/songs/songview', 'id' => $model->id]); ?>
+		<?= Html::a($model->artist, ['/songs/songview', 'id' => $model->id]); ?>
 	</div>
 	<div class="col-md-2 text-right">
 		<?= Html::a(Html::encode($model->year), ['/songs/songview', 'id' => $model->id]); ?>
