@@ -36,9 +36,9 @@ class AppAsset extends AssetBundle
         'amoeba/js/jquery.nicescroll.min.js',
         'amoeba/js/jquery.localscroll-1.2.7-min.js',
         'amoeba/js/fancybox/jquery.fancybox.pack.js',
-        'amoeba/js/skrollr.min.js',
-        'amoeba/js/main.js',
-        'amoeba/js/stellar.js'
+        'amoeba/js/skrollr.min.js',        
+        'amoeba/js/stellar.js',
+        'amoeba/js/main.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

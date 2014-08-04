@@ -27,7 +27,7 @@ AppAsset::register($this);
     <section id="header" class="appear"></section>
         <?php
         NavBar::begin([
-            'brandLabel' => 'Lemmon Karaoke Kings',
+            'brandLabel' => 'Cassandra Pate (dot) com',
             'brandUrl' => Yii::$app->homeUrl,
             'brandOptions' => [
                 'data-0' => 'line-height:65px;',
@@ -54,21 +54,7 @@ AppAsset::register($this);
             ],
         ]);
         NavBar::end();
-        ?>
-
-        <section class="featured">
-            <div class="container"> 
-                <div class="row mar-bot20">
-                    <div class="col-md-6 col-md-offset-3">
-                        
-                        <div class="align-center">
-                            <i class="fa fa-star fa-4x"></i>
-                            <h2 class="slogan">Lemmon Vienna</h2>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        ?>        
 
         <?= $content ?>
 
@@ -108,7 +94,23 @@ AppAsset::register($this);
         </section>
         <!-- /about -->
 
-        <section id="footer" class="section footer">
+    <!-- spacer section:stats -->
+    <section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
+        <div class="container">
+        <div class="align-center pad-top40 pad-bot40">
+            <blockquote class="bigquote color-white">Indoctum accusamus comprehensam</blockquote>
+            <p class="color-white">Bootstraptaste</p>
+            <p class="color-white">Bootstraptaste</p>
+            <p class="color-white">Bootstraptaste</p>
+            <p class="color-white">Bootstraptaste</p>
+            <p class="color-white">Bootstraptaste</p>
+            <p class="color-white">Bootstraptaste</p>
+            <p class="color-white">Bootstraptaste</p>
+        </div>
+        </div>  
+    </section>
+
+    <section id="footer" class="section footer">
         <div class="container">
             <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
                 <div class="col-sm-12 align-center">
@@ -123,12 +125,12 @@ AppAsset::register($this);
                     <div class="col-sm-12"><p>Copyright &copy; frenzel GmbH - by <a href="http://frenzel.net">Frenzel.NET</a></p></div>
             </div>
         </div>
-
     </section>
 
         <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>
 
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>

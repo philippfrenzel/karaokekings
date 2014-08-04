@@ -1,5 +1,6 @@
 /* ==== Google font ==== */
 @import url('http://fonts.googleapis.com/css?family=Lato:400,300,700,900');
+@import url('http://fonts.googleapis.com/css?family=Stalemate');
 /* === fontawesome === */
 @import url('font-awesome.css');
 /* ==== overwrite bootstrap standard ==== */
@@ -432,12 +433,13 @@ h1 a.navbar-brand {
 
 section.featured {
 	padding: 200px 0 60px;
-	background: #E68A01;
+	background: #A7BCAD;
 	color: #fdfdfd;
 }
 
 section.featured h2.slogan {
 	color: #fff;
+	font-family: Stalemate;
 	font-size: 48px;
 	font-weight: 900;
 }
