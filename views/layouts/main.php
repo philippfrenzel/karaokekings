@@ -58,33 +58,7 @@ AppAsset::register($this);
 
         <?= $content ?>
 
-        <!-- about -->
-        <section id="section-about" class="section appear clearfix">
-        <div class="container">
-
-                <div class="row mar-bot40">
-                    <div class="col-md-offset-3 col-md-6">
-                        <div class="section-header">
-                            <h2 class="section-heading animated" data-animation="bounceInUp">About Me</h2>
-                            <p>Work - Live - Balance</p>
-                        </div>
-                    </div>
-                </div>
-
-                    <div class="row align-center mar-bot40">
-                        <div class="col-md-12">
-                            <div class="team-member">
-                                <figure class="member-photo"><img src="amoeba/img/team/member1.jpg" alt="" /></figure>
-                                <div class="team-detail">
-                                    <h4>Cassandra Pate</h4>
-                                    <span>Designer and Artifican</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        
-        </div>
-        </section>
+        
         <!-- /about -->
 
     <!-- spacer section:stats -->
