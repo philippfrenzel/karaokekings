@@ -24,7 +24,7 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
 <section id="section-services" class="section pad-bot30 bg-white">
     <div class="container">
         <div class="row mar-bot40">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <h2>Lieder</h2>
                 <?php echo $this->render('/songs/_search', ['model' => $searchModel]); ?>
                 <?= ListView::widget([
@@ -33,12 +33,6 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
                     'itemView' => '/songs/iviews/_item',
                     'pager' => ['class' => \kop\y2sp\ScrollPager::className()]
                 ]) ?>
-            </div>
-            <div class="col-lg-4">
-                <h2>Karte</h2>
-                <p>
-                    
-                </p>
             </div>
         </div>
     </div>
@@ -55,7 +49,7 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
                                         Nunc velit risus, dapibus non interdum quis, suscipit nec dolor. Vivamus tempor tempus mauris vitae fermentum. In vitae nulla lacus. Sed sagittis tortor vel arcu sollicitudin nec tincidunt metus suscipit.Nunc velit risus, dapibus non interdum.
                                     </h5>
                                     <br/>
-                                    <span class="author">&mdash; MIKE DOE <a href="#">www.siteurl.com</a></span>
+                                    <span class="author">&mdash; Cassandra Pate <a href="#">www.cassandrapate.com</a></span>
                                 </div>
 
                         </div>

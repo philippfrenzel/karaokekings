@@ -44,7 +44,7 @@ AppAsset::register($this);
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
+                //['label' => 'About', 'url' => ['/site/about']],
                 //['label' => 'Contact', 'url' => ['/site/contact']],
                 Yii::$app->user->isGuest ?
                     ['label' => 'Login', 'url' => ['/user/security/login']] :
@@ -65,26 +65,19 @@ AppAsset::register($this);
                 <div class="row mar-bot40">
                     <div class="col-md-offset-3 col-md-6">
                         <div class="section-header">
-                            <h2 class="section-heading animated" data-animation="bounceInUp">Our Team</h2>
-                            <p>Webdevelopment is fun!</p>
+                            <h2 class="section-heading animated" data-animation="bounceInUp">About Me</h2>
+                            <p>Work - Live - Balance</p>
                         </div>
                     </div>
                 </div>
 
                     <div class="row align-center mar-bot40">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="team-member">
+                                <figure class="member-photo"><img src="amoeba/img/team/member1.jpg" alt="" /></figure>
                                 <div class="team-detail">
-                                    <h4>Philipp Frenzel</h4>
-                                    <span>Web developer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="team-member">
-                                <div class="team-detail">
-                                    <h4>Christian Frenzel</h4>
-                                    <span>Web developer</span>
+                                    <h4>Cassandra Pate</h4>
+                                    <span>Designer and Artifican</span>
                                 </div>
                             </div>
                         </div>
