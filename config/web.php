@@ -19,6 +19,9 @@ $config = [
         'appcommon'=>[
             'class'=>'frenzelgmbh\appcommon\Module',
         ],
+        'pages'=>[
+            'class'=>'frenzelgmbh\scms\Module',
+        ],
         'packaii' => [
               'class' => 'schmunk42\packaii\Module',
               'gitHubUsername' => 'philippfrenzel',
