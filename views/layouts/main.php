@@ -30,7 +30,7 @@ AppAsset::register($this);
             'brandLabel' => 'Cassandra Pate (dot) com',
             'brandUrl' => Yii::$app->homeUrl,
             'brandOptions' => [
-                'data-0' => 'line-height:65px;',
+                'data-0' => 'line-height:90px;',
                 'data-300' => 'line-height:50px;'
             ],
             'options' => [
@@ -41,7 +41,11 @@ AppAsset::register($this);
             ],
         ]);
         echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
+            'options' => [
+                'class' => 'nav navbar-nav',
+                'data-0' => 'margin-top:20px;',
+                'data-300' => 'margin-top:5px;'
+            ],
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 //['label' => 'About', 'url' => ['/site/about']],
