@@ -99,7 +99,7 @@ a.scrollup{
 
 /* [EXS] EXPERIENCE SECTION */
 .timeline {
-    background: url("img/line.png") center repeat-y;
+    background: url("../img/line.png") center repeat-y;
     width: 851px;
     padding: 0 0 180px;
     margin: 0 auto;
