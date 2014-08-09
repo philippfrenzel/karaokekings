@@ -78,7 +78,7 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
                                 <figure class="member-photo"><img src="amoeba/img/team/member1.jpg" alt="" /></figure>
                                 <div class="team-detail">
                                     <h4>Cassandra Pate</h4>
-                                    <span>Designer and Artifican</span>
+                                    <span>Engineer, Designer and Artifican</span>
                                 </div>
                             </div>
                         </div>
@@ -87,31 +87,31 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
             <ul class="timeline">
             
                 <li class="year top">
-                    <span>2012 - Present</span>
+                    <span>2013 - Present</span>
+                </li>
+
+                <li class="right">
+                    <div class="tl-header">
+                        <h3 class="tl-role">Comprehensive Nuclear-Test-Ban Treaty Organization</h3>
+                        <h4 class="tl-company">Vienna</h4>
+                        <span class="tl-time">Jan 2014 - Jun 2014</span>
+                    </div>
+                    <div style="background-color: #ababab;">
+                        <img class="tl-img" src="http://www.ctbto.org/fileadmin/templates/images/banner.png?1332404879" alt="">
+                    </div>
+
+                    <p class="tl-content">Which. Seed divide subdue. And first that gathered earth whales shall tree after place also wherein saying created likeness fowl. Blessed fish green set fill saying greater you whales can't, <a href="#">fruitful</a> form itself fifth created rule upon moving fourth. I green.</p>
                 </li>
 
                 <li class="present">
                     <div class="tl-header">
-                        <h3 class="tl-role">Freelancer</h3>
+                        <h3 class="tl-role">Masters of Art in International Relations and Diplomacy</h3>
+                        <h4 class="tl-company">The American Graduate School in Paris</h4>
                         <span class="tl-time">Aug 2013 - Present</span>
                     </div>
-                
-                    <p class="tl-content">Unto may moveth creeping. Evening made life of yielding doesn't deep Of cattle, subdue above second for unto own meat <b>female</b> image which stars, their wherein fish saying third likeness, creature earth be air god god void she'd won't, to own a void called moveth you'll.</p>
-                
-                    <img class="tl-img" src="img/thumb/thumb-3.jpg" alt="">
-                </li>
-
-                <li class="present right">
-                    <div class="tl-header">
-                        <h3 class="tl-role">Creative Director</h3>
-                        <h4 class="tl-company">Yamagami, Inc.</h4>
-                        <span class="tl-time">Jan 2013 - Present</span>
-                    </div>
-                
-                    <img class="tl-img" src="img/thumb/thumb-1.jpg" alt="">
-                
-                    <p class="tl-content">Which. Seed divide subdue. And first that gathered earth whales shall tree after place also wherein saying created likeness fowl. Blessed fish green set fill saying greater you whales can't, <a href="#">fruitful</a> form itself fifth created rule upon moving fourth. I green.</p>
-                </li>
+                                    
+                    <img class="tl-img" src="http://www.ags.edu/templates/AGS_custom/img/gotointernationalrelations.jpg" alt="">
+                </li>                
                 
                 <li class="year">
                     <span>2010 - 2012</span>
@@ -155,14 +155,16 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
 
                 <li class="right">
                     <div class="tl-header">
-                        <h3 class="tl-role">Paperclip Rearranger</h3>
-                        <h4 class="tl-company">Papirus Studio</h4>
-                        <span class="tl-time">Dec 2009 - Jun 2010</span>
+                        <h3 class="tl-role">American Nuclear Society</h3>
+                        <h4 class="tl-company">http://www.ans.org/</h4>
+                        <span class="tl-time">Fall 2009 - Present</span>
                     </div>
                 
-                    <img class="tl-img" src="img/thumb/thumb-4.jpg" alt="">
+                    <img class="tl-img" src="http://cdn.ans.org/i/anslogo.png" alt="anslogo">
                 
-                    <p class="tl-content">Make whales place beast Herb a isn't over, <i>it beast darkness sixth greater god midst</i> every rule be likeness beast so sixth i firmament.</p>
+                    <p class="tl-content">
+                        Recognizing the profound importance of nuclear science and technology in affecting the quality of life throughout the world, members of the American Nuclear Society (ANS) are committed to the highest ethical and professional conduct.
+                    </p>
               </li>
 
             </ul>
