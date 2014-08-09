@@ -17,14 +17,12 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
+    public $css = [        
         'amoeba/css/isotope.css',
         'amoeba/js/fancybox/jquery.fancybox.css',
-        'amoeba/css/animate.css',
-        'amoeba/css/overwrite.css',
-        'amoeba/css/bootstrap-theme.css',
+        'amoeba/css/animate.css',        
         'amoeba/css/style.css',
-        'amoeba/skin/default.css'      
+        'amoeba/skin/default.css' 
     ];
     public $js = [        
         'amoeba/js/modernizr-2.6.2-respond-1.1.0.min.js',

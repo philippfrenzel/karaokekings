@@ -34,9 +34,10 @@ $config = [
     'components' => [
         'assetManager' => [
             'bundles' => [
-                'yii\web\BootstrapAsset' => [
-                     'sourcePath' => NULL,
-                     'js' => ['amoeba/css/bootstrap.css']
+                'yii\bootstrap\BootstrapAsset' => [
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'css' => ['amoeba/css/bootstrap.css','amoeba/css/bootstrap-theme.css']
                 ],
             ],
         ],
