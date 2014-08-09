@@ -25,14 +25,13 @@ $this->title = 'Cassandra Pate - Personal Webpage and CV';
     <div class="container">
         <div class="row mar-bot40">
             <div class="col-lg-12">
-                <h2>Lieder</h2>
-                <?php echo $this->render('/songs/_search', ['model' => $searchModel]); ?>
-                <?= ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'itemOptions' => ['class' => 'item'],
-                    'itemView' => '/songs/iviews/_item',
-                    'pager' => ['class' => \kop\y2sp\ScrollPager::className()]
-                ]) ?>
+                
+                <?php
+                  echo frenzelgmbh\scms\widgets\PortletSinglePage::widget(array(
+                      'id'=>1,
+                  ));
+                ?>
+
             </div>
         </div>
     </div>
