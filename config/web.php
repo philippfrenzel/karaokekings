@@ -32,6 +32,14 @@ $config = [
         ]
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\BootstrapAsset' => [
+                     'sourcePath' => NULL,
+                     'js' => ['amoeba/css/bootstrap.css']
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'fbUknSGWOIPHJh-Ddag27aG8zWJepKWO',

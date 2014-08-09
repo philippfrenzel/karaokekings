@@ -15,9 +15,7 @@ return [
     ],
     'modules' => [
         'user' => 'dektrium\user\Module',
-        'pages'=>[
-            'class'=>'frenzelgmbh\scms\Module',
-        ]
+        //'pages'=> 'frenzelgmbh\scms\Module'
     ],
     'components' => [
         'cache' => [

@@ -22,7 +22,6 @@ class AppAsset extends AssetBundle
         'amoeba/js/fancybox/jquery.fancybox.css',
         'amoeba/css/animate.css',
         'amoeba/css/overwrite.css',
-        'amoeba/css/bootstrap.css',
         'amoeba/css/bootstrap-theme.css',
         'amoeba/css/style.css',
         'amoeba/skin/default.css'      
