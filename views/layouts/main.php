@@ -27,7 +27,8 @@ AppAsset::register($this);
     <section id="header" class="appear"></section>
         <?php
         NavBar::begin([
-            'brandLabel' => 'Cassandra Pate (dot) com',
+            'brandLabel' => 'Cassandra Pate',
+            'screenReaderToggleText' => 'MENU',
             'brandUrl' => Yii::$app->homeUrl,
             'brandOptions' => [
                 'data-0' => 'line-height:90px;',
@@ -48,8 +49,8 @@ AppAsset::register($this);
             ],
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                //['label' => 'About', 'url' => ['/site/about']],
-                //['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'About', 'url' => '#section-about'],
+                ['label' => 'Contact', 'url' => '#footer'],
                 Yii::$app->user->isGuest ?
                     ['label' => 'Login', 'url' => ['/user/security/login']] :
                     ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -65,15 +66,11 @@ AppAsset::register($this);
         
         <!-- /about -->
 
-    <!-- spacer section:stats -->
+    <!-- spacer section:parallax1 -->
     <section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
         <div class="container">
         <div class="align-center pad-top40 pad-bot40">
             <blockquote class="bigquote color-white">Indoctum accusamus comprehensam</blockquote>
-            <p class="color-white">Bootstraptaste</p>
-            <p class="color-white">Bootstraptaste</p>
-            <p class="color-white">Bootstraptaste</p>
-            <p class="color-white">Bootstraptaste</p>
             <p class="color-white">Bootstraptaste</p>
             <p class="color-white">Bootstraptaste</p>
             <p class="color-white">Bootstraptaste</p>

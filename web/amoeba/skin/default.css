@@ -33,6 +33,10 @@ a:hover {
 	color: #FFC2C1;
 }
 
+.navbar-header > .navbar-toggle > .sr-only{
+    position: relative;
+}
+
 /* flexslider */
 .flex-control-paging li a {
 	background: #35A49C;
