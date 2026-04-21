@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das bin ich — Fröhlich · Neugierig · Ausdauernd</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 50%, #a1c4fd 100%);
+            background-attachment: fixed;
+            color: #2b2d42;
+            overflow-x: hidden;
+        }
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            margin-top: 6px;
+            font-size: 0.95rem;
+            opacity: 0.75;
+        }
+
+        .stage {
+            position: relative;
+            width: min(640px, 100%);
+            aspect-ratio: 4 / 3;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .screen h2 {
+            font-size: clamp(1.3rem, 3.2vw, 1.8rem);
+            margin-bottom: 10px;
+        }
+
+        .screen p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 18px;
+            max-width: 440px;
+            line-height: 1.5;
+        }
+
+        button.primary {
+            appearance: none;
+            border: none;
+            padding: 12px 26px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #ff6b6b, #ffa36b);
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        button.primary:hover { transform: translateY(-2px); }
+        button.primary:active { transform: translateY(0); }
+
+        .hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .hud .badge {
+            background: rgba(43, 45, 66, 0.85);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 999px;
+        }
+
+        #playArea {
+            position: absolute;
+            inset: 0;
+            cursor: pointer;
+        }
+
+        .entity {
+            position: absolute;
+            font-size: 2.2rem;
+            transition: transform 0.12s ease;
+            will-change: transform;
+        }
+
+        .entity.pop {
+            cursor: pointer;
+            animation: pop 0.3s ease-out;
+        }
+
+        @keyframes pop {
+            0%   { transform: scale(0); }
+            60%  { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .stamina-wrap {
+            position: absolute;
+            bottom: 40px;
+            left: 10%;
+            right: 10%;
+            text-align: center;
+        }
+
+        .stamina-bar {
+            position: relative;
+            height: 22px;
+            background: rgba(43, 45, 66, 0.15);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 2px solid rgba(43, 45, 66, 0.25);
+        }
+
+        .stamina-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0%;
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            transition: width 0.08s linear;
+        }
+
+        .hint {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            opacity: 0.75;
+        }
+
+        .tap-btn {
+            margin-top: 14px;
+            appearance: none;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(24, 90, 157, 0.3);
+        }
+
+        .tap-btn:active { transform: scale(0.96); }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 16px 0;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .result-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px 8px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-card .emoji { font-size: 2rem; }
+        .result-card .label { font-weight: 700; margin-top: 4px; font-size: 0.85rem; }
+        .result-card .score { font-size: 1.3rem; font-weight: 800; color: #ff6b6b; margin-top: 4px; }
+
+        .tagline {
+            margin-top: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 420px) {
+            .entity { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>Das bin ich</h1>
+            <p>Drei kleine Runden — fröhlich, neugierig, ausdauernd</p>
+        </header>
+
+        <div class="stage" id="stage">
+            <div class="hud">
+                <span class="badge" id="roundBadge">Runde —</span>
+                <span class="badge" id="timerBadge">⏱ —</span>
+                <span class="badge" id="scoreBadge">★ 0</span>
+            </div>
+
+            <div class="screen" id="startScreen">
+                <h2>Bereit?</h2>
+                <p>Dieses Mini-Spiel zeigt drei Dinge über mich. Drei Runden, je 20 Sekunden. Los geht's!</p>
+                <button class="primary" id="startBtn">Spiel starten</button>
+            </div>
+
+            <div class="screen hidden" id="introScreen">
+                <h2 id="introTitle"></h2>
+                <p id="introText"></p>
+                <button class="primary" id="introBtn">Los!</button>
+            </div>
+
+            <div class="screen hidden" id="playScreen">
+                <div id="playArea"></div>
+                <div class="stamina-wrap hidden" id="staminaWrap">
+                    <div class="stamina-bar"><div class="stamina-fill" id="staminaFill"></div></div>
+                    <button class="tap-btn" id="tapBtn">Dranbleiben! Tippen / Leertaste</button>
+                    <div class="hint">Halt die Leertaste gedrückt oder tippe so schnell du kannst.</div>
+                </div>
+            </div>
+
+            <div class="screen hidden" id="endScreen">
+                <h2>Das bin ich 🎉</h2>
+                <div class="result-grid">
+                    <div class="result-card">
+                        <div class="emoji">😄</div>
+                        <div class="label">Fröhlich</div>
+                        <div class="score" id="score1">0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="emoji">🔍</div>
+                        <div class="label">Neugierig</div>
+                        <div class="score" id="score2">0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="emoji">💪</div>
+                        <div class="label">Ausdauernd</div>
+                        <div class="score" id="score3">0</div>
+                    </div>
+                </div>
+                <div class="tagline">Fröhlich · Neugierig · Ausdauernd</div>
+                <p style="margin-top:16px">Gesamtpunktzahl: <strong id="totalScore">0</strong></p>
+                <button class="primary" id="restartBtn">Nochmal spielen</button>
+            </div>
+        </div>
+
+        <footer>Made with ❤️ — vanilla HTML/CSS/JS</footer>
+    </div>
+
+    <script>
+    (function () {
+        const ROUND_SECONDS = 20;
+
+        const stage       = document.getElementById('stage');
+        const playArea    = document.getElementById('playArea');
+        const roundBadge  = document.getElementById('roundBadge');
+        const timerBadge  = document.getElementById('timerBadge');
+        const scoreBadge  = document.getElementById('scoreBadge');
+
+        const startScreen = document.getElementById('startScreen');
+        const introScreen = document.getElementById('introScreen');
+        const playScreen  = document.getElementById('playScreen');
+        const endScreen   = document.getElementById('endScreen');
+
+        const introTitle  = document.getElementById('introTitle');
+        const introText   = document.getElementById('introText');
+
+        const staminaWrap = document.getElementById('staminaWrap');
+        const staminaFill = document.getElementById('staminaFill');
+        const tapBtn      = document.getElementById('tapBtn');
+
+        const scores = [0, 0, 0];
+        let currentRound = 0;
+        let timerId = null;
+        let spawnTimers = [];
+        let roundCleanup = null;
+
+        function show(screen) {
+            [startScreen, introScreen, playScreen, endScreen].forEach(s => s.classList.add('hidden'));
+            screen.classList.remove('hidden');
+        }
+
+        function clearPlayArea() {
+            playArea.innerHTML = '';
+            spawnTimers.forEach(t => clearTimeout(t));
+            spawnTimers = [];
+        }
+
+        function randPos(padding = 40) {
+            const rect = stage.getBoundingClientRect();
+            const x = padding + Math.random() * (rect.width  - padding * 2);
+            const y = 60      + Math.random() * (rect.height - padding * 2 - 60);
+            return { x, y };
+        }
+
+        function startCountdown(seconds, onTick, onEnd) {
+            let remaining = seconds;
+            timerBadge.textContent = '⏱ ' + remaining;
+            timerId = setInterval(() => {
+                remaining--;
+                timerBadge.textContent = '⏱ ' + remaining;
+                if (onTick) onTick(remaining);
+                if (remaining <= 0) {
+                    clearInterval(timerId);
+                    timerId = null;
+                    onEnd();
+                }
+            }, 1000);
+        }
+
+        // ---------- Round 1: Fröhlich ----------
+        function runRoundFroehlich() {
+            const happy = ['😄', '😃', '😁', '🥳', '😊', '🤩'];
+            const sad   = ['😢', '😞', '😠', '☹️'];
+            let roundScore = 0;
+            scoreBadge.textContent = '★ 0';
+
+            function spawnFaller() {
+                const isHappy = Math.random() < 0.7;
+                const el = document.createElement('div');
+                el.className = 'entity';
+                el.textContent = isHappy
+                    ? happy[Math.floor(Math.random() * happy.length)]
+                    : sad[Math.floor(Math.random() * sad.length)];
+
+                const rect = stage.getBoundingClientRect();
+                const x = 20 + Math.random() * (rect.width - 60);
+                el.style.left = x + 'px';
+                el.style.top  = '-40px';
+                playArea.appendChild(el);
+
+                const duration = 2400 + Math.random() * 1600;
+                const start = performance.now();
+                const endY  = rect.height + 40;
+
+                function animate(now) {
+                    const t = (now - start) / duration;
+                    if (t >= 1 || !el.isConnected) { el.remove(); return; }
+                    el.style.top = (-40 + t * (endY + 40)) + 'px';
+                    requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+
+                el.addEventListener('click', () => {
+                    if (!el.isConnected) return;
+                    if (isHappy) {
+                        roundScore += 10;
+                    } else {
+                        roundScore = Math.max(0, roundScore - 5);
+                    }
+                    scoreBadge.textContent = '★ ' + roundScore;
+                    el.remove();
+                }, { once: true });
+            }
+
+            const interval = setInterval(spawnFaller, 450);
+
+            roundCleanup = () => {
+                clearInterval(interval);
+                clearPlayArea();
+                scores[0] = roundScore;
+            };
+
+            startCountdown(ROUND_SECONDS, null, () => {
+                roundCleanup();
+                nextRound();
+            });
+        }
+
+        // ---------- Round 2: Neugierig ----------
+        function runRoundNeugierig() {
+            const treasures = ['❓', '💡', '🔮', '📜', '🗝️', '🎁'];
+            let roundScore = 0;
+            scoreBadge.textContent = '★ 0';
+
+            function spawnTreasure() {
+                const el = document.createElement('div');
+                el.className = 'entity pop';
+                el.textContent = treasures[Math.floor(Math.random() * treasures.length)];
+                const pos = randPos(40);
+                el.style.left = pos.x + 'px';
+                el.style.top  = pos.y + 'px';
+                playArea.appendChild(el);
+
+                const life = 900 + Math.random() * 700;
+                const removeTimer = setTimeout(() => el.remove(), life);
+                spawnTimers.push(removeTimer);
+
+                el.addEventListener('click', () => {
+                    if (!el.isConnected) return;
+                    roundScore += 12;
+                    scoreBadge.textContent = '★ ' + roundScore;
+                    el.style.transform = 'scale(1.5)';
+                    el.style.opacity = '0';
+                    setTimeout(() => el.remove(), 120);
+                }, { once: true });
+            }
+
+            const interval = setInterval(spawnTreasure, 650);
+            spawnTreasure();
+
+            roundCleanup = () => {
+                clearInterval(interval);
+                clearPlayArea();
+                scores[1] = roundScore;
+            };
+
+            startCountdown(ROUND_SECONDS, null, () => {
+                roundCleanup();
+                nextRound();
+            });
+        }
+
+        // ---------- Round 3: Ausdauernd ----------
+        function runRoundAusdauernd() {
+            staminaWrap.classList.remove('hidden');
+            staminaFill.style.width = '0%';
+            let stamina = 0;          // 0..100
+            let totalTaps = 0;
+            const DRAIN_PER_TICK = 1.2;
+            const GAIN_PER_TAP   = 4;
+            scoreBadge.textContent = '★ 0';
+
+            function onTap() {
+                stamina = Math.min(100, stamina + GAIN_PER_TAP);
+                totalTaps++;
+            }
+
+            tapBtn.addEventListener('pointerdown', onTap);
+
+            const keyHandler = e => {
+                if (e.code === 'Space' && !e.repeat) {
+                    e.preventDefault();
+                    onTap();
+                }
+            };
+            window.addEventListener('keydown', keyHandler);
+
+            const drainId = setInterval(() => {
+                stamina = Math.max(0, stamina - DRAIN_PER_TICK);
+                staminaFill.style.width = stamina + '%';
+                scoreBadge.textContent = '★ ' + Math.round(stamina + totalTaps * 0.5);
+            }, 80);
+
+            roundCleanup = () => {
+                clearInterval(drainId);
+                tapBtn.removeEventListener('pointerdown', onTap);
+                window.removeEventListener('keydown', keyHandler);
+                staminaWrap.classList.add('hidden');
+                scores[2] = Math.round(stamina + totalTaps * 0.5);
+            };
+
+            startCountdown(ROUND_SECONDS, null, () => {
+                roundCleanup();
+                nextRound();
+            });
+        }
+
+        // ---------- Orchestration ----------
+        const rounds = [
+            {
+                title: 'Runde 1 — Fröhlich 😄',
+                text:  'Fang so viele glückliche Gesichter wie möglich. Traurige Gesichter lieber stehen lassen!',
+                run:   runRoundFroehlich
+            },
+            {
+                title: 'Runde 2 — Neugierig 🔍',
+                text:  'Überall tauchen kurz Geheimnisse auf. Klick sie an, bevor sie wieder verschwinden!',
+                run:   runRoundNeugierig
+            },
+            {
+                title: 'Runde 3 — Ausdauernd 💪',
+                text:  'Halte die Energie oben: so schnell wie möglich tippen oder Leertaste drücken. Nicht aufgeben!',
+                run:   runRoundAusdauernd
+            }
+        ];
+
+        function nextRound() {
+            if (currentRound >= rounds.length) {
+                showEnd();
+                return;
+            }
+            const r = rounds[currentRound];
+            roundBadge.textContent = 'Runde ' + (currentRound + 1) + '/3';
+            introTitle.textContent = r.title;
+            introText.textContent  = r.text;
+            show(introScreen);
+        }
+
+        function startCurrentRound() {
+            const r = rounds[currentRound];
+            show(playScreen);
+            scoreBadge.textContent = '★ 0';
+            clearPlayArea();
+            r.run();
+            currentRound++;
+        }
+
+        function showEnd() {
+            document.getElementById('score1').textContent = scores[0];
+            document.getElementById('score2').textContent = scores[1];
+            document.getElementById('score3').textContent = scores[2];
+            document.getElementById('totalScore').textContent = scores.reduce((a, b) => a + b, 0);
+            timerBadge.textContent = '⏱ —';
+            roundBadge.textContent = 'Fertig!';
+            show(endScreen);
+        }
+
+        function resetAll() {
+            scores[0] = scores[1] = scores[2] = 0;
+            currentRound = 0;
+            if (timerId) { clearInterval(timerId); timerId = null; }
+            clearPlayArea();
+            staminaWrap.classList.add('hidden');
+        }
+
+        document.getElementById('startBtn').addEventListener('click', () => {
+            resetAll();
+            nextRound();
+        });
+
+        document.getElementById('introBtn').addEventListener('click', startCurrentRound);
+
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            resetAll();
+            show(startScreen);
+        });
+    })();
+    </script>
+</body>
+</html>
